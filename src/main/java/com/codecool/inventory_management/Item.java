@@ -3,7 +3,7 @@ package com.codecool.inventory_management;
 import org.bson.types.ObjectId;
 
 public class Item {
-    private ObjectId _id;
+    private ObjectId id;
     private Product product;
     private int quantity;
 
@@ -11,17 +11,17 @@ public class Item {
     }
 
     public Item(Product product, int quantity) {
-        this._id = new ObjectId();
+        this.id = new ObjectId();
         this.product = product;
         this.quantity = quantity;
     }
 
-    public ObjectId get_id() {
-        return _id;
+    public ObjectId getId() {
+        return id;
     }
 
-    public void set_id(ObjectId _id) {
-        this._id = _id;
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 
     public Product getProduct() {
@@ -43,7 +43,7 @@ public class Item {
     @Override
     public String toString() {
         return "Item{" +
-                "_id: " + _id +
+                "_id: " + id +
                 ", product: " + product +
                 ", quantity: " + quantity +
                 '}';

@@ -6,7 +6,12 @@ public enum TransactionType {
 
     private String direction;
 
+    TransactionType() {
+    }
+
     TransactionType(String direction) {
         this.direction = direction;
     }
+
+
 }
