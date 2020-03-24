@@ -1,6 +1,11 @@
 package com.codecool.inventory_management;
 
+import org.bson.codecs.pojo.annotations.BsonDiscriminator;
+import org.bson.codecs.pojo.annotations.BsonProperty;
+
+@BsonDiscriminator
 public class Item {
+    @BsonProperty(useDiscriminator = true)
     private Product product;
     private int quantity;
     private int salePrice;
@@ -18,12 +23,12 @@ public class Item {
         return quantity;
     }
 
-    public int getSalePrice() {
-        return salePrice;
-    }
-
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public int getSalePrice() {
+        return salePrice;
     }
 
     public void setSalePrice(int salePrice) {
