@@ -1,4 +1,4 @@
-package com.codecool.inventory_management;
+package com.codecool.inventory_management.model;
 
 public enum TransactionType {
     SALE("decrease"),

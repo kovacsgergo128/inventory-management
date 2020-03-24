@@ -1,5 +1,10 @@
-package com.codecool.inventory_management;
+package com.codecool.inventory_management.dao;
 
+import com.codecool.inventory_management.dao.TransactionDao;
+import com.codecool.inventory_management.model.Item;
+import com.codecool.inventory_management.model.Product;
+import com.codecool.inventory_management.model.Transaction;
+import com.codecool.inventory_management.model.TransactionType;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package com.codecool.inventory_management;
+package com.codecool.inventory_management.util;
 
 import com.mongodb.client.FindIterable;
 

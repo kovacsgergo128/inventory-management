@@ -1,5 +1,6 @@
-package com.codecool.inventory_management;
+package com.codecool.inventory_management.util;
 
+import com.codecool.inventory_management.util.ConnectionHandler;
 import com.mongodb.client.MongoDatabase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

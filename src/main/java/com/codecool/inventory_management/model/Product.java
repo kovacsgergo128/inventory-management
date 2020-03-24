@@ -1,4 +1,4 @@
-package com.codecool.inventory_management;
+package com.codecool.inventory_management.model;
 
 import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.bson.types.ObjectId;
