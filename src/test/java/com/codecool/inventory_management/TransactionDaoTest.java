@@ -4,8 +4,9 @@ import org.bson.types.ObjectId;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TransactionDaoTest {
     private TransactionDao transactionDao = null;
@@ -35,5 +36,25 @@ public class TransactionDaoTest {
         assertNotNull(transactionDao.getTransactionBy(transactionId));
         assertEquals(transactionId, transactionDao.getTransactionBy(transactionId).getId());
 
+    }
+
+    @Test
+    public void testSaveNewTransaction() {
+        Product product1 = new Product("Test product 1", new ObjectId("5e78fe2a1b65c45a7b03baa2"));
+        Product product2 = new Product("Test product 2", new ObjectId("5e78fe2a1b65c45a7b03baa2"));
+
+        Item item1 = new Item(product1, 4);
+        Item item2 = new Item(product2, 6);
+
+        Transaction newTransaction = new Transaction(
+                new ObjectId("5e79fa69e0e42b7d3f9323fc"),
+                List.of(item1, item2),
+                TransactionType.PURCHASE
+        );
+        ObjectId newTransactionId = newTransaction.getId();
+
+        assertNull(transactionDao.getTransactionBy(newTransactionId));
+        transactionDao.saveNewTransaction(newTransaction);
+        assertNotNull(transactionDao.getTransactionBy(newTransactionId));
     }
 }

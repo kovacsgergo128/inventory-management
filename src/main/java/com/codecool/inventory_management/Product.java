@@ -12,6 +12,12 @@ public class Product {
 
     public Product(){}
 
+    public Product(String name, ObjectId productCategoryId) {
+        this.id = new ObjectId();
+        this.name = name;
+        this.productCategoryId = productCategoryId;
+    }
+
     public ObjectId getId() {
         return id;
     }
