@@ -35,7 +35,7 @@ public class TransactionDao {
     public Transaction getTransactionBy(ObjectId transactionId) {
         return connection.getCollection("Transaction")
                          .withDocumentClass(Transaction.class)
-                         .find(Filters.eq("id", transactionId))
+                         .find(Filters.eq("_id", transactionId))
                          .first();
     }
 
