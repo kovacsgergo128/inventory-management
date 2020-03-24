@@ -40,4 +40,12 @@ public class Item {
         this.quantity = quantity;
     }
 
+    @Override
+    public String toString() {
+        return "Item{" +
+                "_id: " + _id +
+                ", product: " + product +
+                ", quantity: " + quantity +
+                '}';
+    }
 }
