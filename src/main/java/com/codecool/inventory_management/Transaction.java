@@ -67,7 +67,7 @@ public class Transaction {
     @Override
     public String toString() {
         return "Transaction{" +
-                "_id: " + id +
+                "id: " + id +
                 ", inventoryId: " + inventoryId +
                 ", date: " + date +
                 ", items: " + items +

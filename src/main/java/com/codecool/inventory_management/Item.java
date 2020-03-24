@@ -43,7 +43,7 @@ public class Item {
     @Override
     public String toString() {
         return "Item{" +
-                "_id: " + id +
+                "id: " + id +
                 ", product: " + product +
                 ", quantity: " + quantity +
                 '}';
