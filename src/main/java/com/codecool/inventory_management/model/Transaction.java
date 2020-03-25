@@ -1,6 +1,5 @@
 package com.codecool.inventory_management.model;
 
-import com.google.gson.annotations.Expose;
 import org.bson.types.ObjectId;
 
 import java.time.LocalDateTime;
@@ -8,15 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Transaction {
-    @Expose
     private ObjectId id;
-    @Expose
     private ObjectId inventoryId;
-    @Expose
     private LocalDateTime date;
-    @Expose
     private List<Item> items = new ArrayList<>();
-    @Expose
     private TransactionType type;
 
     public Transaction(ObjectId inventoryId, List<Item> items, TransactionType type) {

@@ -1,13 +1,10 @@
 package com.codecool.inventory_management.model;
 
-import com.google.gson.annotations.Expose;
 import org.bson.types.ObjectId;
 
 public class ProductCategory {
 
-    @Expose
     private ObjectId id;
-    @Expose
     private String name;
 
     public ProductCategory() {

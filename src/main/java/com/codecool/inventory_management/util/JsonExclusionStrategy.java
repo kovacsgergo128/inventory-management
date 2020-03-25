@@ -7,7 +7,7 @@ import com.google.gson.annotations.Expose;
 public class JsonExclusionStrategy implements ExclusionStrategy {
     @Override
     public boolean shouldSkipField(FieldAttributes fieldAttributes) {
-        return fieldAttributes.getAnnotation(Expose.class) == null;
+        return fieldAttributes.getAnnotation(Expose.class) != null;
     }
 
     @Override

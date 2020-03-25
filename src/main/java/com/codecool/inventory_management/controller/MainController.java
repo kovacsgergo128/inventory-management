@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 @WebServlet(name = "default",urlPatterns = {"/"})
 public class MainController extends HttpServlet {
@@ -22,7 +21,7 @@ public class MainController extends HttpServlet {
         if(filteredFaviconRequest(req, resp))
             return;
 
-        sendJson(resp, jsonProvider.stringify(transactionDao.getAllTransactions()));
+        jsonProvider.sendJson(resp, jsonProvider.stringify(transactionDao.getAllTransactions()));
     }
 
     private boolean filteredFaviconRequest(HttpServletRequest req, HttpServletResponse resp) {
@@ -34,14 +33,4 @@ public class MainController extends HttpServlet {
             return false;
         }
     }
-
-    private void sendJson(HttpServletResponse resp, String json) throws IOException {
-        PrintWriter out = resp.getWriter();
-        resp.setContentType("application/json");
-        resp.setCharacterEncoding("UTF-8");
-        out.print(json);
-        out.flush();
-    }
-
-
 }
