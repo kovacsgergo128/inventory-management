@@ -37,21 +37,25 @@ public class ProductDao {
         collection.insertOne(product);
     }
 
-    public Product getProductBy(ObjectId id) {
-        return collection.find(Filters.eq("_id", id)).first();
-    }
-
     public void remove(ObjectId id) {
         collection.deleteOne(Filters.eq("_id", id));
     }
 
-    public List<Product> getAllProducts() {
-        FindIterable<Product> products = collection.find();
-        return MongoCollectionExtractor.extract(products);
+    public Product getProductBy(ObjectId id) {
+        return collection.find(Filters.eq("_id", id)).first();
+    }
+
+    public Product getProductBy(int articleNumber) {
+        return collection.find(Filters.eq("article number", articleNumber)).first();
     }
 
     public List<Product> getProductsBy(ProductCategory productCategory) {
         FindIterable<Product> products = collection.find(Filters.eq("product category", productCategory));
+        return MongoCollectionExtractor.extract(products);
+    }
+
+    public List<Product> getAllProducts() {
+        FindIterable<Product> products = collection.find();
         return MongoCollectionExtractor.extract(products);
     }
 
