@@ -13,12 +13,12 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "default",urlPatterns = {"/"})
 public class MainController extends HttpServlet {
-
     private TransactionDao transactionDao = TransactionDao.getInstance();
     private JsonProvider jsonProvider = new JsonProvider();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("GET /");
         if(filteredFaviconRequest(req, resp))
             return;
 

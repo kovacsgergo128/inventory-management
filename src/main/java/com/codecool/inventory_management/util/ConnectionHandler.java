@@ -17,7 +17,7 @@ public class ConnectionHandler {
     private static ConnectionHandler instance = null;
 
     private static final ConnectionString CONNECTION_STRING = new ConnectionString(
-            "mongodb+srv://inventory-user_1:inventory-user_1@inventory-management-mvcox.mongodb.net/test?retryWrites=true&w=majority"
+            "mongodb://inventory-user_1:inventory-user_1@inventory-management-shard-00-00-mvcox.mongodb.net:27017,inventory-management-shard-00-01-mvcox.mongodb.net:27017,inventory-management-shard-00-02-mvcox.mongodb.net:27017/test?ssl=true&replicaSet=Inventory-management-shard-0&authSource=admin&retryWrites=true&w=majority"
     );
     private static final String DATABASE_NAME = "InventoryManagement";
 
