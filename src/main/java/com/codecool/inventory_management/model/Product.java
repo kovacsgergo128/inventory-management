@@ -15,16 +15,18 @@ public class Product {
     private double salePrice;
     @BsonProperty(value = "product_category_id")
     private ObjectId productCategoryId;
+    @BsonProperty(value = "product category")
+    private ProductCategory productCategory;
 
     public Product(){}
 
-    public Product(int articleNumber, String name, double purchasePrice, double salePrice, ObjectId productCategoryId) {
+    public Product(int articleNumber, String name, double purchasePrice, double salePrice, ProductCategory productCategory) {
         this.id = new ObjectId();
         this.articleNumber = articleNumber;
         this.name = name;
         this.purchasePrice = purchasePrice;
         this.salePrice = salePrice;
-        this.productCategoryId = productCategoryId;
+        this.productCategory = productCategory;
     }
 
 
@@ -46,12 +48,12 @@ public class Product {
         this.name = name;
     }
 
-    public ObjectId getProductCategoryId() {
-        return productCategoryId;
+    public ProductCategory getProductCategory() {
+        return productCategory;
     }
 
-    public void setProductCategoryId(ObjectId productCategoryId) {
-        this.productCategoryId = productCategoryId;
+    public void setProductCategory(ProductCategory productCategory) {
+        this.productCategory = productCategory;
     }
 
     public int getArticleNumber() {
@@ -88,6 +90,7 @@ public class Product {
                 ", purchasePrice=" + purchasePrice +
                 ", salePrice=" + salePrice +
                 ", productCategoryId=" + productCategoryId +
+                ", productCategory=" + productCategory +
                 '}';
     }
 }
