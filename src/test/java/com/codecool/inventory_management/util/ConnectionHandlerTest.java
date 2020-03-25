@@ -1,12 +1,10 @@
 package com.codecool.inventory_management.util;
 
-import com.codecool.inventory_management.util.ConnectionHandler;
 import com.mongodb.client.MongoDatabase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ConnectionHandlerTest {
 
