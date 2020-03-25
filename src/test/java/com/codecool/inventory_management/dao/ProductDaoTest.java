@@ -3,8 +3,7 @@ package com.codecool.inventory_management.dao;
 import com.codecool.inventory_management.model.Product;
 import com.codecool.inventory_management.model.ProductCategory;
 import org.bson.types.ObjectId;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,12 +20,18 @@ class ProductDaoTest {
         createProductRelatedObjects();
     }
 
+    @AfterEach
+    public void removeAddedProduct(TestInfo info) {
+        if(!info.getTags().contains("removeAddedProduct")) return;
+        productDao.remove(newProductId);
+    }
+
     @Test
+    @Tag("removeAddedProduct")
     public void addProductToDatabaseTest() {
         assertNull(productDao.getProductBy(newProductId));
         productDao.add(product);
         assertNotNull(productDao.getProductBy(newProductId));
-        productDao.remove(newProductId);
 
     }
 
@@ -39,28 +44,28 @@ class ProductDaoTest {
     }
 
     @Test
+    @Tag("removeAddedProduct")
     public void testGetProductById() {
         productDao.add(product);
         Product result = productDao.getProductBy(newProductId);
         assertEquals(product, result);
-        productDao.remove(newProductId);
     }
 
     @Test
+    @Tag("removeAddedProduct")
     public void testGetProductByArticleNumber() {
         int newProductArticleNumber = product.getArticleNumber();
         productDao.add(product);
         Product result = productDao.getProductBy(newProductArticleNumber);
         assertEquals(product, result);
-        productDao.remove(newProductId);
     }
 
     @Test
+    @Tag("removeAddedProduct")
     public void testGetProductsByProductCategory() {
         productDao.add(product);
         Product result = productDao.getProductsBy(productCategory).get(0);
         assertEquals(product, result);
-        productDao.remove(newProductId);
     }
 
     @Test
