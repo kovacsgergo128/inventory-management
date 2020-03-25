@@ -2,10 +2,15 @@ package com.codecool.inventory_management.dao;
 
 import com.codecool.inventory_management.model.Product;
 import com.codecool.inventory_management.util.ConnectionHandler;
+import com.codecool.inventory_management.util.MongoCollectionExtractor;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import org.bson.types.ObjectId;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class ProductDao {
 
@@ -38,4 +43,11 @@ public class ProductDao {
     public void remove(ObjectId id) {
         collection.deleteOne(Filters.eq("_id", id));
     }
+
+    public List<Product> getAllProducts() {
+        FindIterable<Product> products = collection.find();
+        return MongoCollectionExtractor.extract(products);
+    }
+
+
 }
