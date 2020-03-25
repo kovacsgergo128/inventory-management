@@ -17,7 +17,7 @@ class ProductDaoTest {
     }
 
     @Test
-    public void addProductToDatabaseCorrectly() {
+    public void addProductToDatabaseTest() {
         Product product1 = new Product(9, "Test product 1", 100, 160, new ObjectId("5e78fe2a1b65c45a7b03baa2"));
         ObjectId newProductId = product1.getId();
         assertNull(productDao.getProductBy(newProductId));
