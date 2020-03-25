@@ -4,6 +4,8 @@ import com.codecool.inventory_management.model.Product;
 import com.codecool.inventory_management.util.ConnectionHandler;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
+import org.bson.types.ObjectId;
 
 public class ProductDao {
 
@@ -29,4 +31,7 @@ public class ProductDao {
         collection.insertOne(product);
     }
 
+    public Product getProductBy(ObjectId id) {
+        return collection.find(Filters.eq("_id", id)).first();
+    }
 }
