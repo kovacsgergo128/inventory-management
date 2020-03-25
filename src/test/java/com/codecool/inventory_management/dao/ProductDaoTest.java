@@ -11,36 +11,27 @@ import static org.junit.jupiter.api.Assertions.*;
 class ProductDaoTest {
 
     private ProductDao productDao = null;
+    private ProductCategory productCategory = null;
+    private Product product = null;
+    private ObjectId newProductId = null;
 
     @BeforeEach
     public void init() {
         this.productDao = ProductDao.getInstance();
+        createProductRelatedObjects();
     }
-
-
 
     @Test
     public void addProductToDatabaseTest() {
-        ProductCategory productCategory1 = new ProductCategory(new ObjectId("5e78fe2a1b65c45a7b03baa2"), "Fruit");
-        Product product1 = new Product(9, "Test product 1", 100, 160, productCategory1);
-        ObjectId newProductId = product1.getId();
         assertNull(productDao.getProductBy(newProductId));
-        productDao.add(product1);
+        productDao.add(product);
         assertNotNull(productDao.getProductBy(newProductId));
 
     }
 
-    // QUESTION:
-    // How can I avoid to create a product for the test case below too?
-    // I would like to use the product id created in addTest and remove that product from the database.
-    // Or is it impossible because test cases are independent from each other?
-    // Solution: Should I create a Constructor for testing purposes?
     @Test
     public void removeProductFromDatabaseTest() {
-        ProductCategory productCategory1 = new ProductCategory(new ObjectId("5e78fe2a1b65c45a7b03baa2"), "Fruit");
-        Product product1 = new Product(9, "Test product 1", 100, 160, productCategory1);
-        ObjectId newProductId = product1.getId();
-        productDao.add(product1);
+        productDao.add(product);
         assertNotNull(productDao.getProductBy(newProductId));
         productDao.remove(newProductId);
         assertNull(productDao.getProductBy(newProductId));
@@ -48,47 +39,40 @@ class ProductDaoTest {
 
     @Test
     public void testGetProductById() {
-        ProductCategory productCategory1 = new ProductCategory(new ObjectId("5e78fe2a1b65c45a7b03baa2"), "Fruit");
-        Product product1 = new Product(9, "Test product 1", 100, 160, productCategory1);
-        ObjectId newProductId = product1.getId();
-        productDao.add(product1);
+        productDao.add(product);
         Product result = productDao.getProductBy(newProductId);
-        assertEquals(product1, result);
+        assertEquals(product, result);
+        productDao.remove(newProductId);
     }
 
     @Test
     public void testGetProductByArticleNumber() {
-        ProductCategory productCategory1 = new ProductCategory(new ObjectId("5e78fe2a1b65c45a7b03baa2"), "Fruit");
-        Product product1 = new Product(1200, "Test product 1", 100, 160, productCategory1);
-        ObjectId newProductId = product1.getId();
-        int newProductArticleNumber = product1.getArticleNumber();
-        productDao.add(product1);
+        int newProductArticleNumber = product.getArticleNumber();
+        productDao.add(product);
         Product result = productDao.getProductBy(newProductArticleNumber);
-        assertEquals(product1, result);
+        assertEquals(product, result);
         productDao.remove(newProductId);
     }
 
     @Test
     public void testGetProductsByProductCategory() {
-        ProductCategory productCategory1 = new ProductCategory(new ObjectId("5e78fe2a1b65c45a7b03baa3"), "Laptop");
-        Product product1 = new Product(1200, "Test product 1", 100, 160, productCategory1);
-        ObjectId newProductId = product1.getId();
-        productDao.add(product1);
-        Product result = productDao.getProductsBy(productCategory1).get(0);
-        assertEquals(product1, result);
+        productDao.add(product);
+        Product result = productDao.getProductsBy(productCategory).get(0);
+        assertEquals(product, result);
         productDao.remove(newProductId);
     }
-
 
     @Test
     public void testGetAllProducts() {
-        ProductCategory productCategory1 = new ProductCategory(new ObjectId("5e78fe2a1b65c45a7b03baa3"), "Laptop");
-        Product product1 = new Product(1200, "Test product 1", 100, 160, productCategory1);
-        ObjectId newProductId = product1.getId();
-        productDao.add(product1);
+        ObjectId id = new ObjectId("5e78febe1b65c45a7b03baa3");
+        Product product = productDao.getProductBy(id);
         Product result = productDao.getAllProducts().get(0);
-        assertEquals(product1, result);
-        productDao.remove(newProductId);
+        assertEquals(product, result);
     }
 
+    private void createProductRelatedObjects() {
+        this.productCategory = new ProductCategory(new ObjectId("5e78fe2a1b65c45a7b03baa2"), "Chocolate");
+        this.product = new Product(2122, "Test product 1", 100, 160, this.productCategory);
+        this.newProductId = product.getId();
+    }
 }
