@@ -77,7 +77,7 @@ class ProductDaoTest {
     }
 
     private void createProductRelatedObjects() {
-        this.productCategory = new ProductCategory(new ObjectId("5e78fe2a1b65c45a7b03baa2"), "Chocolate");
+        this.productCategory = new ProductCategory(new ObjectId("5e78fe2a1b65c45a7b03baa2"), "Test Category 1");
         this.product = new Product(2122, "Test product 1", 100, 160, this.productCategory);
         this.newProductId = product.getId();
     }
