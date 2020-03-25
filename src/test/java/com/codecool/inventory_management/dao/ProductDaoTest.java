@@ -1,6 +1,7 @@
 package com.codecool.inventory_management.dao;
 
 import com.codecool.inventory_management.model.Product;
+import com.codecool.inventory_management.model.ProductCategory;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,8 @@ class ProductDaoTest {
 
     @Test
     public void addProductToDatabaseTest() {
-        Product product1 = new Product(9, "Test product 1", 100, 160, new ObjectId("5e78fe2a1b65c45a7b03baa2"));
+        ProductCategory productCategory1 = new ProductCategory(new ObjectId("5e78fe2a1b65c45a7b03baa2"), "Fruit");
+        Product product1 = new Product(9, "Test product 1", 100, 160, productCategory1);
         ObjectId newProductId = product1.getId();
         assertNull(productDao.getProductBy(newProductId));
         productDao.add(product1);
