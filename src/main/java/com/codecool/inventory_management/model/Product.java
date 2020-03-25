@@ -9,18 +9,32 @@ public class Product {
     @Expose
     private ObjectId id;
     @Expose
+    @BsonProperty(value = "article number")
+    private int articleNumber;
     private String name;
     @Expose
-    @BsonProperty(value = "product_catgory_id")
+    @BsonProperty(value = "purchase price")
+    private double purchasePrice;
+    @BsonProperty(value = "sale price")
+    private double salePrice;
+    @BsonProperty(value = "product_category_id")
     private ObjectId productCategoryId;
+    @BsonProperty(value = "product category")
+    private ProductCategory productCategory;
 
     public Product(){}
 
-    public Product(String name, ObjectId productCategoryId) {
+    public Product(int articleNumber, String name, double purchasePrice, double salePrice, ProductCategory productCategory) {
         this.id = new ObjectId();
+        this.articleNumber = articleNumber;
         this.name = name;
-        this.productCategoryId = productCategoryId;
+        this.purchasePrice = purchasePrice;
+        this.salePrice = salePrice;
+        this.productCategory = productCategory;
     }
+
+
+    // QUESTION: Variables => final?
 
     public ObjectId getId() {
         return id;
@@ -38,20 +52,64 @@ public class Product {
         this.name = name;
     }
 
-    public ObjectId getProductCategoryId() {
-        return productCategoryId;
+    public ProductCategory getProductCategory() {
+        return productCategory;
     }
 
-    public void setProductCategoryId(ObjectId productCategoryId) {
-        this.productCategoryId = productCategoryId;
+    public void setProductCategory(ProductCategory productCategory) {
+        this.productCategory = productCategory;
     }
+
+    public int getArticleNumber() {
+        return articleNumber;
+    }
+
+    public void setArticleNumber(int articleNumber) {
+        this.articleNumber = articleNumber;
+    }
+
+    public double getPurchasePrice() {
+        return purchasePrice;
+    }
+
+    public void setPurchasePrice(double purchasePrice) {
+        this.purchasePrice = purchasePrice;
+    }
+
+    public double getSalePrice() {
+        return salePrice;
+    }
+
+    public void setSalePrice(double salePrice) {
+        this.salePrice = salePrice;
+    }
+
 
     @Override
     public String toString() {
         return "Product{" +
-                "id: " + id +
-                ", name: '" + name + '\'' +
-                ", productCategoryId: " + productCategoryId +
+                "id=" + id +
+                ", articleNumber=" + articleNumber +
+                ", name='" + name + '\'' +
+                ", purchasePrice=" + purchasePrice +
+                ", salePrice=" + salePrice +
+                ", productCategoryId=" + productCategoryId +
+                ", productCategory=" + productCategory +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Product)) return false;
+
+        Product product = (Product) o;
+
+        return id.equals(product.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
     }
 }
