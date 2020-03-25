@@ -26,6 +26,7 @@ class ProductDaoTest {
         assertNull(productDao.getProductBy(newProductId));
         productDao.add(product);
         assertNotNull(productDao.getProductBy(newProductId));
+        productDao.remove(newProductId);
 
     }
 
