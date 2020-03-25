@@ -1,10 +1,6 @@
 package com.codecool.inventory_management.dao;
 
-import com.codecool.inventory_management.dao.TransactionDao;
-import com.codecool.inventory_management.model.Item;
-import com.codecool.inventory_management.model.Product;
-import com.codecool.inventory_management.model.Transaction;
-import com.codecool.inventory_management.model.TransactionType;
+import com.codecool.inventory_management.model.*;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -45,8 +41,9 @@ public class TransactionDaoTest {
 
     @Test
     public void testSaveNewTransaction() {
-        Product product1 = new Product(111, "Test product 1", 100, 160, new ObjectId("5e78fe2a1b65c45a7b03baa2"));
-        Product product2 = new Product(321, "Test product 2", 120, 180, new ObjectId("5e78fe2a1b65c45a7b03baa2"));
+        ProductCategory productCategory1 = new ProductCategory(new ObjectId("5e78fe2a1b65c45a7b03baa2"), "Fruit");
+        Product product1 = new Product(111, "Test product 1", 100, 160, productCategory1);
+        Product product2 = new Product(321, "Test product 2", 120, 180, productCategory1);
 
         Item item1 = new Item(product1, 4);
         Item item2 = new Item(product2, 6);
