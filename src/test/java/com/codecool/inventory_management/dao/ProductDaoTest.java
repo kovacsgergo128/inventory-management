@@ -9,10 +9,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ProductDaoTest {
 
-    private ProductDao productDao = null;
-    private ProductCategory productCategory = null;
-    private Product product = null;
-    private ObjectId newProductId = null;
+    private ProductDao productDao;
+    private ProductCategory productCategory;
+    private Product product;
+    private ObjectId newProductId;
 
     @BeforeEach
     public void init() {
