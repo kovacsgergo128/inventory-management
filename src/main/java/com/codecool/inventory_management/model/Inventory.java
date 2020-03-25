@@ -26,12 +26,18 @@ public class Inventory {
         this.items = items;
     }
 
-    public void addProductToInventory(Item item) {
-        items.add(item);
+    public Inventory(ObjectId id, String name, List<Item> items) {
+        this.id = id;
+        this.name = name;
+        this.items = items;
     }
 
-    public void removeItemFromInventory(Item item) {
-        items.remove(item);
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 
     public String getName() {
@@ -40,6 +46,14 @@ public class Inventory {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 
     @Override

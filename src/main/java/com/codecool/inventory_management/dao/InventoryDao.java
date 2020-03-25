@@ -1,22 +1,26 @@
 package com.codecool.inventory_management.dao;
 
+
+import com.codecool.inventory_management.model.Transaction;
 import com.codecool.inventory_management.util.ConnectionHandler;
 import com.codecool.inventory_management.model.Inventory;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 import org.bson.types.ObjectId;
 
 import java.util.List;
 
 public class InventoryDao {
     private static InventoryDao inventoryDao;
-    private  MongoDatabase connection;
+    private MongoDatabase connection;
+    public static final String COLLECTION_NAME = "Inventory";
 
     private InventoryDao() {
         connection = ConnectionHandler.getInstance().getDatabase();
 
     }
 
-    public InventoryDao getInstance(){
+    public static InventoryDao getInstance() {
         if (inventoryDao == null) {
             inventoryDao = new InventoryDao();
         }
@@ -24,16 +28,24 @@ public class InventoryDao {
     }
 
     public void addNewInventory(Inventory inventory) {
+        connection.getCollection(COLLECTION_NAME)
+                .withDocumentClass(Inventory.class)
+                .insertOne(inventory);
+    }
+
+
+    public void removeInventory(ObjectId id) {
 
     }
 
-    public void removeInventory(ObjectId _id ) {
 
-    }
+    public Inventory findInventory(ObjectId inventoryID) {
+            return connection.getCollection(COLLECTION_NAME)
+                    .withDocumentClass(Inventory.class)
+                    .find(Filters.eq("_id", inventoryID))
+                    .first();
 
 
-    public Inventory findInventory(ObjectId _id) {
-        return null;
     }
 
     public List<Inventory> getAllInventories() {
