@@ -25,8 +25,24 @@ class InventoryDaoTest {
     }
     @Test
     public void addNewInventory() {
-        Product product1 = new Product("Test product 1", new ObjectId("5e78fe2a1b65c45a7b03baa2"));
-        Product product2 = new Product("Test product 2", new ObjectId("5e78fe2a1b65c45a7b03baa2"));
+        ProductCategory productCategory1 = new ProductCategory(
+                new ObjectId("5e78fe2a1b65c45a7b03baa2"),
+                "Fruit"
+        );
+        Product product1 = new Product(
+                111,
+                "Test product 1",
+                100,
+                160,
+                productCategory1
+        );
+        Product product2 = new Product(
+                321,
+                "Test product 2",
+                120,
+                180,
+                productCategory1
+        );
 
         Item item1 = new Item(product1, 4);
         Item item2 = new Item(product2, 6);
