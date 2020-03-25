@@ -8,13 +8,14 @@ public class Product {
     private ObjectId id;
     @BsonProperty(value = "article number")
     private int articleNumber;
+    @Expose
     private String name;
     @BsonProperty(value = "purchase price")
     private double purchasePrice;
+    @Expose
     @BsonProperty(value = "sale price")
     private double salePrice;
-    @BsonProperty(value = "product_category_id")
-    private ObjectId productCategoryId;
+    @Expose
     @BsonProperty(value = "product category")
     private ProductCategory productCategory;
 
@@ -89,7 +90,6 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", purchasePrice=" + purchasePrice +
                 ", salePrice=" + salePrice +
-                ", productCategoryId=" + productCategoryId +
                 ", productCategory=" + productCategory +
                 '}';
     }
