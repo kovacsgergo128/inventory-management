@@ -34,4 +34,8 @@ public class ProductDao {
     public Product getProductBy(ObjectId id) {
         return collection.find(Filters.eq("_id", id)).first();
     }
+
+    public void remove(ObjectId id) {
+        collection.deleteOne(Filters.eq("_id", id));
+    }
 }
