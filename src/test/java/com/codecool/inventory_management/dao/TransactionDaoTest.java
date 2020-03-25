@@ -45,8 +45,8 @@ public class TransactionDaoTest {
 
     @Test
     public void testSaveNewTransaction() {
-        Product product1 = new Product("Test product 1", new ObjectId("5e78fe2a1b65c45a7b03baa2"));
-        Product product2 = new Product("Test product 2", new ObjectId("5e78fe2a1b65c45a7b03baa2"));
+        Product product1 = new Product(111, "Test product 1", 100, 160, new ObjectId("5e78fe2a1b65c45a7b03baa2"));
+        Product product2 = new Product(321, "Test product 2", 120, 180, new ObjectId("5e78fe2a1b65c45a7b03baa2"));
 
         Item item1 = new Item(product1, 4);
         Item item2 = new Item(product2, 6);
