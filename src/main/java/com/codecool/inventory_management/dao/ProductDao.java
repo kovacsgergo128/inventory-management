@@ -25,6 +25,8 @@ public class ProductDao {
         return instance;
     }
 
-
+    public void add(Product product) {
+        collection.insertOne(product);
+    }
 
 }
