@@ -12,6 +12,4 @@ public enum TransactionType {
     TransactionType(String direction) {
         this.direction = direction;
     }
-
-
 }

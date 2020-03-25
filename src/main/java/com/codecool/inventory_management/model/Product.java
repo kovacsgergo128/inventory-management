@@ -1,25 +1,18 @@
 package com.codecool.inventory_management.model;
 
-import com.google.gson.annotations.Expose;
 import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.bson.types.ObjectId;
 
 public class Product {
 
-    @Expose
     private ObjectId id;
-    @Expose
     @BsonProperty(value = "article number")
     private int articleNumber;
-    @Expose
     private String name;
-    @Expose
     @BsonProperty(value = "purchase price")
     private double purchasePrice;
-    @Expose
     @BsonProperty(value = "sale price")
     private double salePrice;
-    @Expose
     @BsonProperty(value = "product category")
     private ProductCategory productCategory;
 

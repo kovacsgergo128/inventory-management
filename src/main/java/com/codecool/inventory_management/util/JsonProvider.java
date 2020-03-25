@@ -3,6 +3,9 @@ package com.codecool.inventory_management.util;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 public class JsonProvider {
@@ -20,5 +23,13 @@ public class JsonProvider {
 
     public <O> String stringify(O object) {
         return gson.toJson(object);
+    }
+
+    public void sendJson(HttpServletResponse resp, String json) throws IOException {
+        PrintWriter out = resp.getWriter();
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        out.print(json);
+        out.flush();
     }
 }

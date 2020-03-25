@@ -1,14 +1,10 @@
 package com.codecool.inventory_management.model;
 
-import com.google.gson.annotations.Expose;
 import org.bson.types.ObjectId;
 
 public class Item {
-    @Expose
     private ObjectId id;
-    @Expose
     private Product product;
-    @Expose
     private int quantity;
 
     public Item() {
