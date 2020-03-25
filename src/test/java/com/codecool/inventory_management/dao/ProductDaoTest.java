@@ -46,4 +46,49 @@ class ProductDaoTest {
         assertNull(productDao.getProductBy(newProductId));
     }
 
+    @Test
+    public void testGetProductById() {
+        ProductCategory productCategory1 = new ProductCategory(new ObjectId("5e78fe2a1b65c45a7b03baa2"), "Fruit");
+        Product product1 = new Product(9, "Test product 1", 100, 160, productCategory1);
+        ObjectId newProductId = product1.getId();
+        productDao.add(product1);
+        Product result = productDao.getProductBy(newProductId);
+        assertEquals(product1, result);
+    }
+
+    @Test
+    public void testGetProductByArticleNumber() {
+        ProductCategory productCategory1 = new ProductCategory(new ObjectId("5e78fe2a1b65c45a7b03baa2"), "Fruit");
+        Product product1 = new Product(1200, "Test product 1", 100, 160, productCategory1);
+        ObjectId newProductId = product1.getId();
+        int newProductArticleNumber = product1.getArticleNumber();
+        productDao.add(product1);
+        Product result = productDao.getProductBy(newProductArticleNumber);
+        assertEquals(product1, result);
+        productDao.remove(newProductId);
+    }
+
+    @Test
+    public void testGetProductsByProductCategory() {
+        ProductCategory productCategory1 = new ProductCategory(new ObjectId("5e78fe2a1b65c45a7b03baa3"), "Laptop");
+        Product product1 = new Product(1200, "Test product 1", 100, 160, productCategory1);
+        ObjectId newProductId = product1.getId();
+        productDao.add(product1);
+        Product result = productDao.getProductsBy(productCategory1).get(0);
+        assertEquals(product1, result);
+        productDao.remove(newProductId);
+    }
+
+
+    @Test
+    public void testGetAllProducts() {
+        ProductCategory productCategory1 = new ProductCategory(new ObjectId("5e78fe2a1b65c45a7b03baa3"), "Laptop");
+        Product product1 = new Product(1200, "Test product 1", 100, 160, productCategory1);
+        ObjectId newProductId = product1.getId();
+        productDao.add(product1);
+        Product result = productDao.getAllProducts().get(0);
+        assertEquals(product1, result);
+        productDao.remove(newProductId);
+    }
+
 }
