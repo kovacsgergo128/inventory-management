@@ -40,7 +40,6 @@ class ProductDaoTest {
         ProductCategory productCategory1 = new ProductCategory(new ObjectId("5e78fe2a1b65c45a7b03baa2"), "Fruit");
         Product product1 = new Product(9, "Test product 1", 100, 160, productCategory1);
         ObjectId newProductId = product1.getId();
-        System.out.println(newProductId);
         productDao.add(product1);
         assertNotNull(productDao.getProductBy(newProductId));
         productDao.remove(newProductId);
