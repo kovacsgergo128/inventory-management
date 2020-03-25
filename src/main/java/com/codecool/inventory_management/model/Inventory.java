@@ -1,4 +1,4 @@
-package com.codecool.inventory_management;
+package com.codecool.inventory_management.model;
 
 import org.bson.types.ObjectId;
 
@@ -21,6 +21,11 @@ public class Inventory {
         this.name = name;
     }
 
+    public Inventory(String name, List<Item> items) {
+        this.name = name;
+        this.items = items;
+    }
+
     public void addProductToInventory(Item item) {
         items.add(item);
     }
@@ -35,5 +40,14 @@ public class Inventory {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Inventory{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", items=" + items +
+                '}';
     }
 }

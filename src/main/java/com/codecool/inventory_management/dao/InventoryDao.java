@@ -1,26 +1,26 @@
 package com.codecool.inventory_management.dao;
 
 import com.codecool.inventory_management.util.ConnectionHandler;
-import com.codecool.inventory_management.Inventory;
+import com.codecool.inventory_management.model.Inventory;
 import com.mongodb.client.MongoDatabase;
 import org.bson.types.ObjectId;
 
 import java.util.List;
 
-public class InventoryDaoMongoDB {
-    private static InventoryDaoMongoDB instance;
+public class InventoryDao {
+    private static InventoryDao inventoryDao;
     private  MongoDatabase connection;
 
-    private InventoryDaoMongoDB() {
+    private InventoryDao() {
         connection = ConnectionHandler.getInstance().getDatabase();
 
     }
 
-    public InventoryDaoMongoDB getInstance(){
-        if (instance == null) {
-            instance = new InventoryDaoMongoDB();
+    public InventoryDao getInstance(){
+        if (inventoryDao == null) {
+            inventoryDao = new InventoryDao();
         }
-        return instance;
+        return inventoryDao;
     }
 
     public void addNewInventory(Inventory inventory) {
