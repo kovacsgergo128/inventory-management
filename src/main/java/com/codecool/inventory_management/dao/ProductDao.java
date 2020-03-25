@@ -1,6 +1,7 @@
 package com.codecool.inventory_management.dao;
 
 import com.codecool.inventory_management.model.Product;
+import com.codecool.inventory_management.model.ProductCategory;
 import com.codecool.inventory_management.util.ConnectionHandler;
 import com.codecool.inventory_management.util.MongoCollectionExtractor;
 import com.mongodb.client.FindIterable;
@@ -49,5 +50,9 @@ public class ProductDao {
         return MongoCollectionExtractor.extract(products);
     }
 
+    public List<Product> getProductsBy(ProductCategory productCategory) {
+        FindIterable<Product> products = collection.find(Filters.eq("product category", productCategory));
+        return MongoCollectionExtractor.extract(products);
+    }
 
 }
