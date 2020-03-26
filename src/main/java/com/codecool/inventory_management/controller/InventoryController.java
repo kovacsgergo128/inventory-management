@@ -3,7 +3,9 @@ package com.codecool.inventory_management.controller;
 import com.codecool.inventory_management.dao.InventoryDao;
 import com.codecool.inventory_management.dao.TransactionDao;
 import com.codecool.inventory_management.model.Inventory;
+import com.codecool.inventory_management.model.Item;
 import com.codecool.inventory_management.util.JsonProvider;
+import com.codecool.inventory_management.util.JsonReader;
 import org.bson.types.ObjectId;
 
 import javax.servlet.ServletException;
@@ -19,6 +21,7 @@ public class InventoryController extends HttpServlet {
     private InventoryDao inventoryDao = InventoryDao.getInstance();
     private TransactionDao transactionDao = TransactionDao.getInstance();
     private JsonProvider jsonProvider = new JsonProvider();
+    private JsonReader jsonReader = new JsonReader();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -42,6 +45,19 @@ public class InventoryController extends HttpServlet {
         jsonProvider.sendJson(resp, jsonProvider.stringify(inventoryDao.getAllInventories()));
     }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        try {
+            String[] params = req.getPathInfo().substring(1).split("/");
+            ObjectId inventoryId = new ObjectId(params[0]);
+            if (params[1].equals("items")) {
+                Item newItem = jsonReader.parse(req, Item.class);
+                inventoryDao.addItemToInventory(inventoryId, newItem);
+            }
+
+        } catch (NullPointerException ignored) {}
+
+    }
 
     private boolean filteredFaviconRequest(HttpServletRequest req, HttpServletResponse resp) {
         if ("/favicon.ico".equals(req.getRequestURI())) {
