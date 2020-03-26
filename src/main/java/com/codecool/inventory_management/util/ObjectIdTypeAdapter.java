@@ -20,6 +20,9 @@ public class ObjectIdTypeAdapter extends TypeAdapter<ObjectId> {
 
     @Override
     public ObjectId read(JsonReader in) throws IOException {
-        return null;
+        if (String.valueOf(in) == null) {
+            return null;
+        }
+        return new ObjectId(String.valueOf(in));
     }
 }
