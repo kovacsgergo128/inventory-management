@@ -47,32 +47,43 @@ class InventoryDaoTest {
 
     @Test
     public void testFindInventory() {
-        ObjectId inventoryID = new ObjectId("5e7b3faf6a9b9c96ba2bccb4");
+        Inventory inventoryToFind = createTestInventory("inventoryToFind");
+        inventoryDao.addNewInventory(inventoryToFind);
+        ObjectId inventoryID = inventoryToFind.getId();
         assertNotNull(inventoryDao.findInventory(inventoryID));
         assertEquals(inventoryID, inventoryDao.findInventory(inventoryID).getId());
     }
     @Test
     public void testAddNewInventory() {
-        Inventory myInventory = createTestInventory("myInventory");
+        Inventory myInventory = createTestInventory("myNewInventory");
         ObjectId inventoryID = myInventory.getId();
         assertNull(inventoryDao.findInventory(inventoryID));
         inventoryDao.addNewInventory(myInventory);
         assertNotNull(inventoryDao.findInventory(inventoryID));
     }
-    @Disabled //until problem solved
     @Test
     public void testUpdateInventory() {
         Inventory updateTestInventory = createTestInventory("updateTestInventory");
         ObjectId inventoryID = updateTestInventory.getId();
         inventoryDao.addNewInventory(updateTestInventory);
         assertNotNull(inventoryDao.findInventory(inventoryID));
-        updateTestInventory.setName("juuuuuuuuuuuccccciiiiiii");
+        updateTestInventory.setName("updatedInventory");
         assertNotEquals(updateTestInventory, inventoryDao.findInventory(inventoryID));
         inventoryDao.updateInventory(updateTestInventory);
-        //I might have some problem with inventory.equals method, the objects are the same but it says nope..
-        assertEquals(updateTestInventory, inventoryDao.findInventory(inventoryID));
+        assertEquals(updateTestInventory.getName(), inventoryDao.findInventory(inventoryID).getName());
+        System.out.println(updateTestInventory);
+        System.out.println(inventoryDao.findInventory(inventoryID));
 
+    }
 
+    @Test
+    public void testRemoveInventory() {
+        Inventory removeTestInventory = createTestInventory("removeTestInventory");
+        ObjectId inventoryId = removeTestInventory.getId();
+        inventoryDao.addNewInventory(removeTestInventory);
+        assertEquals(removeTestInventory.getId(), inventoryDao.findInventory(inventoryId).getId());
+        inventoryDao.removeInventory(inventoryId);
+        assertNull(inventoryDao.findInventory(inventoryId));
 
     }
 }

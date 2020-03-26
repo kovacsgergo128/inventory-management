@@ -36,8 +36,9 @@ public class InventoryDao {
     }
 
 
-    public void removeInventory(ObjectId id) {
-
+    public void removeInventory(ObjectId inventoryID) {
+        connection.getCollection(COLLECTION_NAME)
+                .deleteOne(Filters.eq("_id", inventoryID));
     }
 
 
