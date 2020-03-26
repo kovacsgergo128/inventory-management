@@ -2,6 +2,7 @@ package com.codecool.inventory_management.dao;
 
 
 import com.codecool.inventory_management.model.Inventory;
+import com.codecool.inventory_management.model.Item;
 import com.codecool.inventory_management.util.ConnectionHandler;
 import com.codecool.inventory_management.util.MongoCollectionExtractor;
 import com.mongodb.client.FindIterable;
@@ -58,7 +59,11 @@ public class InventoryDao {
         return MongoCollectionExtractor.extract(inventories);
     }
 
-    public void addItemToInventory() {
+    public void updateInventory(Inventory inventory) {
+        ObjectId inventoryID = inventory.getId();
+        connection.getCollection(COLLECTION_NAME)
+                .deleteOne(Filters.eq("_id", inventoryID));
+        addNewInventory(inventory);
 
     }
 }

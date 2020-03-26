@@ -6,6 +6,7 @@ import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Inventory {
 
@@ -49,7 +50,9 @@ public class Inventory {
     public void setName(String name) {
         this.name = name;
     }
-
+    public void addItemToInventory(Item item) {
+        items.add(item);
+    }
     public ObjectId getId() {
         return id;
     }
@@ -65,5 +68,20 @@ public class Inventory {
                 ", name='" + name + '\'' +
                 ", items=" + items +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Inventory inventory = (Inventory) o;
+        return id.equals(inventory.id) &&
+                name.equals(inventory.name) &&
+                items.equals(inventory.items);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, items);
     }
 }
