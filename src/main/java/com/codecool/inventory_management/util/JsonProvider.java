@@ -29,6 +29,7 @@ public class JsonProvider {
         PrintWriter out = resp.getWriter();
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
+        resp.addHeader("Access-Control-Allow-Origin", "*");
         out.print(json);
         out.flush();
     }
