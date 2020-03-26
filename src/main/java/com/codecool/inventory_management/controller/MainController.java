@@ -12,7 +12,6 @@ import java.io.IOException;
 
 @WebServlet(name = "default",urlPatterns = {"/"})
 public class MainController extends HttpServlet {
-
     private TransactionDao transactionDao = TransactionDao.getInstance();
     private JsonProvider jsonProvider = new JsonProvider();
 
