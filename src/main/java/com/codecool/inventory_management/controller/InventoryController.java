@@ -54,8 +54,11 @@ public class InventoryController extends HttpServlet {
                 Item newItem = jsonReader.parse(req, Item.class);
                 inventoryDao.addItemToInventory(inventoryId, newItem);
             }
-
+            return;
         } catch (NullPointerException ignored) {}
+
+        Inventory newInventory = jsonReader.parse(req, Inventory.class);
+        inventoryDao.addNewInventory(newInventory);
 
     }
 
