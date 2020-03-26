@@ -20,4 +20,14 @@ public class ProductController extends HttpServlet {
         jsonProvider.sendJson(resp, jsonProvider.stringify(productDao.getAllProducts()));
     }
 
+    @Override
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) {
+        String[] routeComponents = req.getPathInfo().substring(1).split("/");
+    }
+
+    @Override
+    public void doPut(HttpServletRequest req, HttpServletResponse resp) {
+        String[] routeComponents = req.getPathInfo().substring(1).split("/");
+
+    }
 }
