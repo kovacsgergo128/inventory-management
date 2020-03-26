@@ -28,13 +28,15 @@ public class InventoryController extends HttpServlet {
             Inventory inventory = inventoryDao.findInventory(inventoryId);
             if (params.length == 1) {
                 jsonProvider.sendJson(resp, jsonProvider.stringify(inventory));
+                return;
             }
             else if (params[1].equals("items")) {
                 jsonProvider.sendJson(resp, jsonProvider.stringify(inventory.getItems()));
+                return;
             }
 
 
-        } catch (NullPointerException ignored) {}
+        } catch (NullPointerException | IllegalArgumentException ignored) {}
 
         jsonProvider.sendJson(resp, jsonProvider.stringify(inventoryDao.getAllInventories()));
     }
