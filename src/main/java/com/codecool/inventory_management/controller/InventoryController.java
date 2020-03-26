@@ -1,6 +1,7 @@
 package com.codecool.inventory_management.controller;
 
 import com.codecool.inventory_management.dao.InventoryDao;
+import com.codecool.inventory_management.dao.TransactionDao;
 import com.codecool.inventory_management.model.Inventory;
 import com.codecool.inventory_management.util.JsonProvider;
 import org.bson.types.ObjectId;
@@ -16,6 +17,7 @@ import java.util.Arrays;
 @WebServlet(name = "default",urlPatterns = {"/inventories/*"})
 public class InventoryController extends HttpServlet {
     private InventoryDao inventoryDao = InventoryDao.getInstance();
+    private TransactionDao transactionDao = TransactionDao.getInstance();
     private JsonProvider jsonProvider = new JsonProvider();
 
     @Override
@@ -26,14 +28,15 @@ public class InventoryController extends HttpServlet {
             String[] params = req.getPathInfo().substring(1).split("/");
             ObjectId inventoryId = new ObjectId(params[0]);
             Inventory inventory = inventoryDao.findInventory(inventoryId);
-            if (params.length == 1) {
+            if (params.length == 1)
                 jsonProvider.sendJson(resp, jsonProvider.stringify(inventory));
-            }
-            else if (params[1].equals("items")) {
+
+            else if (params[1].equals("items"))
                 jsonProvider.sendJson(resp, jsonProvider.stringify(inventory.getItems()));
-            }
 
-
+            else if (params[1].equals("transactions"))
+                jsonProvider.sendJson(resp, jsonProvider.stringify(transactionDao.getAllTransactionsOf(inventoryId)));
+            return;
         } catch (NullPointerException ignored) {}
 
         jsonProvider.sendJson(resp, jsonProvider.stringify(inventoryDao.getAllInventories()));
