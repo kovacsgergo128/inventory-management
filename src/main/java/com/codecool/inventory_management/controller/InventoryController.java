@@ -1,6 +1,7 @@
 package com.codecool.inventory_management.controller;
 
 import com.codecool.inventory_management.dao.InventoryDao;
+import com.codecool.inventory_management.model.Inventory;
 import com.codecool.inventory_management.util.JsonProvider;
 import org.bson.types.ObjectId;
 
@@ -23,11 +24,21 @@ public class InventoryController extends HttpServlet {
             return;
         try {
             String[] params = req.getPathInfo().substring(1).split("/");
+            ObjectId inventoryId = new ObjectId(params[0]);
+            Inventory inventory = inventoryDao.findInventory(inventoryId);
+            if (params.length == 1) {
+                jsonProvider.sendJson(resp, jsonProvider.stringify(inventory));
+            }
+//            else if (params[1].equals("items")) {
+//                jsonProvider.sendJson(resp, jsonProvider.stringify(inventory.getItems()));
+//            }
+
 
         } catch (NullPointerException ignored) {}
 
         jsonProvider.sendJson(resp, jsonProvider.stringify(inventoryDao.getAllInventories()));
     }
+
 
     private boolean filteredFaviconRequest(HttpServletRequest req, HttpServletResponse resp) {
         if ("/favicon.ico".equals(req.getRequestURI())) {
