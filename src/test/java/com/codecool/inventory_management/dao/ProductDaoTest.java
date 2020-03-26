@@ -36,6 +36,15 @@ class ProductDaoTest {
     }
 
     @Test
+    @Tag("removeAddedProduct")
+    public void testUpdateProductCorrectly() {
+        productDao.add(product);
+        int newValue = 120;
+        productDao.update(newProductId, "sale price", newValue);
+        assertEquals(newValue, productDao.getProductBy(newProductId).getSalePrice());
+    }
+
+    @Test
     public void removeProductFromDatabaseTest() {
         productDao.add(product);
         assertNotNull(productDao.getProductBy(newProductId));

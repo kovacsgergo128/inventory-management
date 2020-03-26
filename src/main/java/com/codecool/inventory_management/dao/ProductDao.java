@@ -8,6 +8,8 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import java.util.List;
@@ -34,6 +36,11 @@ public class ProductDao {
 
     public void add(Product product) {
         collection.insertOne(product);
+    }
+
+    public <T> void update(ObjectId id, String fieldToBeUpdated, T newValue) {
+        Bson updateOperation = Updates.set(fieldToBeUpdated, newValue);
+        collection.findOneAndUpdate(Filters.eq("_id", id), updateOperation);
     }
 
     public void remove(ObjectId id) {
