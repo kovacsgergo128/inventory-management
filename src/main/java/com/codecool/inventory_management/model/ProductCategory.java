@@ -1,9 +1,11 @@
 package com.codecool.inventory_management.model;
 
+import com.codecool.inventory_management.util.ObjectIdTypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
 import org.bson.types.ObjectId;
 
 public class ProductCategory {
-
+    @JsonAdapter(ObjectIdTypeAdapter.class)
     private ObjectId id;
     private String name;
 
