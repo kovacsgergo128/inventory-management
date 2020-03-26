@@ -29,9 +29,9 @@ public class InventoryController extends HttpServlet {
             if (params.length == 1) {
                 jsonProvider.sendJson(resp, jsonProvider.stringify(inventory));
             }
-//            else if (params[1].equals("items")) {
-//                jsonProvider.sendJson(resp, jsonProvider.stringify(inventory.getItems()));
-//            }
+            else if (params[1].equals("items")) {
+                jsonProvider.sendJson(resp, jsonProvider.stringify(inventory.getItems()));
+            }
 
 
         } catch (NullPointerException ignored) {}
