@@ -1,5 +1,7 @@
 package com.codecool.inventory_management.model;
 
+import com.codecool.inventory_management.util.ObjectIdTypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
 import org.bson.types.ObjectId;
 
 import java.time.LocalDateTime;
@@ -7,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Transaction {
+
+    @JsonAdapter(ObjectIdTypeAdapter.class)
     private ObjectId id;
     private ObjectId inventoryId;
     private LocalDateTime date;

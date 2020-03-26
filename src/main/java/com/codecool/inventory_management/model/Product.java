@@ -1,11 +1,15 @@
 package com.codecool.inventory_management.model;
 
+import com.codecool.inventory_management.util.ObjectIdTypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
 import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.bson.types.ObjectId;
 
 public class Product {
 
+    @JsonAdapter(ObjectIdTypeAdapter.class)
     private ObjectId id;
+
     @BsonProperty(value = "article number")
     private int articleNumber;
     private String name;
