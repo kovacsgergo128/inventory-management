@@ -1,9 +1,10 @@
 package com.codecool.inventory_management.dao;
 
 
-import com.codecool.inventory_management.model.Transaction;
-import com.codecool.inventory_management.util.ConnectionHandler;
 import com.codecool.inventory_management.model.Inventory;
+import com.codecool.inventory_management.util.ConnectionHandler;
+import com.codecool.inventory_management.util.MongoCollectionExtractor;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import org.bson.types.ObjectId;
@@ -49,7 +50,12 @@ public class InventoryDao {
     }
 
     public List<Inventory> getAllInventories() {
-        return null;
+        FindIterable<Inventory> inventories =
+                connection.getCollection(COLLECTION_NAME)
+                        .withDocumentClass(Inventory.class)
+                        .find();
+
+        return MongoCollectionExtractor.extract(inventories);
     }
 
     public void addItemToInventory() {

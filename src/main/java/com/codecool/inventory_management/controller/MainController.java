@@ -1,6 +1,6 @@
 package com.codecool.inventory_management.controller;
 
-import com.codecool.inventory_management.dao.TransactionDao;
+import com.codecool.inventory_management.dao.InventoryDao;
 import com.codecool.inventory_management.util.JsonProvider;
 
 import javax.servlet.ServletException;
@@ -12,7 +12,7 @@ import java.io.IOException;
 
 @WebServlet(name = "default",urlPatterns = {"/"})
 public class MainController extends HttpServlet {
-    private TransactionDao transactionDao = TransactionDao.getInstance();
+    private InventoryDao inventoryDao = InventoryDao.getInstance();
     private JsonProvider jsonProvider = new JsonProvider();
 
     @Override
@@ -20,7 +20,7 @@ public class MainController extends HttpServlet {
         if(filteredFaviconRequest(req, resp))
             return;
 
-        jsonProvider.sendJson(resp, jsonProvider.stringify(transactionDao.getAllTransactions()));
+        jsonProvider.sendJson(resp, jsonProvider.stringify(inventoryDao.getAllInventories()));
     }
 
     private boolean filteredFaviconRequest(HttpServletRequest req, HttpServletResponse resp) {
