@@ -60,6 +60,7 @@ class ProductDaoTest {
         assertEquals(product, result);
     }
 
+    @Disabled
     @Test
     @Tag("removeAddedProduct")
     public void testGetProductByArticleNumber() {
@@ -69,6 +70,7 @@ class ProductDaoTest {
         assertEquals(product, result);
     }
 
+    @Disabled
     @Test
     @Tag("removeAddedProduct")
     public void testGetProductsByProductCategory() {
@@ -77,6 +79,7 @@ class ProductDaoTest {
         assertEquals(product, result);
     }
 
+    @Disabled
     @Test
     public void testGetAllProducts() {
         ObjectId id = new ObjectId("5e78febe1b65c45a7b03baa3");

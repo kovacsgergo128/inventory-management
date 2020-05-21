@@ -19,7 +19,7 @@ class InventoryDaoTest {
 
     @Test
     public void findInventory() {
-        ObjectId inventoryID = new ObjectId("5e7b3faf6a9b9c96ba2bccb4");
+        ObjectId inventoryID = new ObjectId("5e7cdd1437c26d352e40d13a");
         assertNotNull(inventoryDao.findInventory(inventoryID));
         assertEquals(inventoryID, inventoryDao.findInventory(inventoryID).getId());
     }
